@@ -7,7 +7,10 @@ def get_simple(N=10000):
     :param N: до какого числа выбирать простые числа
     :return: список простых чисел
     '''
-    lst=[x for x in range(2,N+1)] #список всех чисел от 2 о 1000
+    if N <= 0 : return [1]
+    N=int(N)
+
+    lst=[x for x in range(2,N+1)] #список всех чисел от 2 до N
     rez=[1] # первый элемент списка
     while len(lst) > 0:
         # пока есть элементы в исходном списке чисел
@@ -25,6 +28,9 @@ itissimple = (lambda x: x in LST_SIMPLE)
 # получает x возвращает список созданный фильтром кратности
 # элементов списка простых чисел
 def lst_dividers(x):
+    if x<=0 : return [1]
+    x=int(x)
+
     rez = list(filter(lambda y: x % y ==0, LST_SIMPLE))
     return rez
 
@@ -37,6 +43,8 @@ def factorize(x):
     :param x: число
     :return: список множителей
     '''
+    if x<=0 : return [1]
+    x=int(x)
     lst = []
     # ф-я получения след делителя , кроме 1
     next_divider = lambda x, z: list(filter(lambda y: x % y == 0, z))[0]
@@ -47,5 +55,7 @@ def factorize(x):
         lst.append(n)
     lst.insert(0, 1)
     return sorted(lst)
+
+
 
 LST_SIMPLE = get_simple()
